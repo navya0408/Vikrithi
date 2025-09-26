@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="signup.css">
+    <title>Vikrithi | Login & Registration</title>
+    <style>
+        /* Add your custom styles for the avatar pop-up */
+        .avatar-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .avatar-selection-box {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            width: 300px;
+        }
+
+        .avatar-selection-box img {
+            width: 50px;
+            height: 50px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        .close-avatar-modal {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <nav class="nav">
+            <div class="nav-logo">
+                <p>Vikrithi .</p>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="#" class="link active">Donor v/s Recycler</a></li>
+                    <li><a href="#" class="link">Know About Us</a></li>
+                    <li><a href="#" class="link">Help</a></li>
+                </ul>
+            </div>
+            <div class="nav-button">
+                <button class="btn white-btn" id="loginBtn" onclick="login()">Donor</button>
+                <button class="btn" id="registerBtn" onclick="register()">Recycler</button>
+            </div>
+            <div class="nav-menu-btn">
+                <i class="bx bx-menu" onclick="myMenuFunction()"></i>
+            </div>
+        </nav>
+
+        <!----------------------------- Form box ----------------------------------->
+        <div class="form-box">
+            <!------------------- login form --------------------------->
+            <div class="login-container" id="login">
+                <div class="top">
+                    <header>Sign Up as Donor</header>
+                </div>
+                <form action="/signup" method="post">
+                    <div class="input-box">
+                        <input type="text" name="username" class="input-field" placeholder="Username" required>
+                        <i class="bx bx-user"></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="password" name="password" class="input-field" placeholder="Password" required>
+                        <i class="bx bx-lock-alt"></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="text" name="phoneNumber" class="input-field" placeholder="Phone Number" required>
+                        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="hidden" name="userType" value="donor">
+                        <input type="submit" class="submit" value="Sign In">
+                    </div>
+                </form>
+                <div class="two-col">
+                    <div class="one">
+                        <input type="checkbox" id="login-check">
+                        <label for="login-check"> Terms & conditions</label>
+                    </div>
+                    <div class="bottom">
+                        <center><span> Have an account? <a href="#" onclick="register()">Login</a></span></center>
+                    </div>
+                </div>
+            </div>
+            <!------------------- registration form --------------------------->
+            <div class="register-container" id="register">
+                <div class="top">
+                    <header>Sign Up as Recycler</header>
+                </div>
+                <form action="/signup" method="post">
+                    <div class="two-forms">
+                        <div class="input-box">
+                            <input type="text" name="username" class="input-field" placeholder="Username" required>
+                            <i class="bx bx-user"></i>
+                        </div>
+                        <div class="input-box">
+                            <input type="text" name="companyName" class="input-field" placeholder="Company name" required>
+                            <i class="bx bx-user"></i>
+                        </div>
+                    </div>
+                    <div class="input-box">
+                        <input type="text" name="phoneNumber" class="input-field" placeholder="Phone Number" required>
+                        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="password" name="password" class="input-field" placeholder="Password" required>
+                        <i class="bx bx-lock-alt"></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="hidden" name="userType" value="recycler">
+                        <input type="submit" class="submit" value="Register">
+                    </div>
+                </form>
+                <div class="two-col">
+                    <div class="one">
+                        <input type="checkbox" id="register-check">
+                        <label for="register-check"> Terms & conditions</label>
+                    </div>
+                    <center><span>Have an account? <a href="#" onclick="login()">Login</a></span></center>
+                </div>
+            </div>
+        </div>
+
+        <!-- Avatar Selection Modal -->
+        <div class="avatar-modal" id="avatarModal">
+            <div class="avatar-selection-box">
+                <span class="close-avatar-modal" onclick="closeAvatarModal()">&times;</span>
+                <h3>Select Avatar</h3>
+                <div class="avatars">
+                    <img src="https://cdn.vectorstock.com/i/preview-1x/89/91/cartoon-funny-girl-head-vector-16228991.jpg" alt="Avatar 1" onclick="selectAvatar('https://cdn.vectorstock.com/i/preview-1x/89/91/cartoon-funny-girl-head-vector-16228991.jpg')">
+                    <img src="https://cdn.vectorstock.com/i/1000v/38/88/happy-girl-avatar-funny-child-profile-picture-vector-41133888.jpg" alt="Avatar 2" onclick="selectAvatar('https://cdn.vectorstock.com/i/1000v/38/88/happy-girl-avatar-funny-child-profile-picture-vector-41133888.jpg')">
+                    <img src="https://cdn3.vectorstock.com/i/1000x1000/15/62/cute-little-girl-avatar-round-profile-picture-vector-40991562.jpg" alt="Avatar 3" onclick="selectAvatar('https://cdn3.vectorstock.com/i/1000x1000/15/62/cute-little-girl-avatar-round-profile-picture-vector-40991562.jpg')">
+                    <!-- Add more avatars here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle between Login and Registration Forms
+        function login() {
+            var loginForm = document.getElementById("login");
+            var registerForm = document.getElementById("register");
+            var loginBtn = document.getElementById("loginBtn");
+            var registerBtn = document.getElementById("registerBtn");
+            
+            // Slide login form in, slide registration form out
+            loginForm.style.left = "4px";
+            registerForm.style.right = "-520px"; // Slide registration form out
+            loginForm.style.opacity = 1;
+            registerForm.style.opacity = 0;
+
+            // Button styling
+            loginBtn.classList.add("white-btn");
+            registerBtn.classList.remove("white-btn");
+        }
+
+        function register() {
+            var loginForm = document.getElementById("login");
+            var registerForm = document.getElementById("register");
+            var loginBtn = document.getElementById("loginBtn");
+            var registerBtn = document.getElementById("registerBtn");
+            
+            // Slide registration form in, slide login form out
+            loginForm.style.left = "-510px"; // Slide login form out
+            registerForm.style.right = "5px";
+            loginForm.style.opacity = 0;
+            registerForm.style.opacity = 1;
+
+            // Button styling
+            loginBtn.classList.remove("white-btn");
+            registerBtn.classList.add("white-btn");
+        }
+
+        // Menu functionality for responsive view
+        function myMenuFunction() {
+            var i = document.getElementById("navMenu");
+            if (i.className === "nav-menu") {
+                i.className += " responsive";
+            } else {
+                i.className = "nav-menu";
+            }
+        }
+
+        // Open Avatar Modal
+        function openAvatarModal() {
+            document.getElementById('avatarModal').style.display = 'flex';
+        }
+
+        // Close Avatar Modal
+        function closeAvatarModal() {
+            document.getElementById('avatarModal').style.display = 'none';
+        }
+
+        // Set selected avatar
+        function selectAvatar(avatar) {
+            document.getElementById('profile-avatar').src = avatar;  // Update profile image
+            closeAvatarModal();  // Close the avatar modal
+        }
+    </script>
+</body>
+</html>

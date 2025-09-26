@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vikrithi - Welcome Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans:wght@400&display=swap" rel="stylesheet">
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      font-family: 'Open Sans', sans-serif;
+      height: 100%;
+      margin: 0;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: url('https://magnusinstitute.org/wp-content/uploads/2022/07/TheWasteLand-CourseImage.jpg') no-repeat center center/cover;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      color: #fff;
+      text-align: center;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4); /* Dark overlay for readability */
+      z-index: 1;
+    }
+
+    .content {
+      z-index: 2;
+    }
+
+    .content h1 {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 20px;
+      font-weight: 400;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+    }
+
+    .content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 64px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .content p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .btn {
+      text-decoration: none;
+      color: white;
+      font-size: 16px;
+      padding: 10px 20px;
+      border: 2px solid white;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: white;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="content">
+      <h1>WELCOME TO</h1>
+      <h2>VIKRITHI</h2>
+      <p>Transforming waste to value through sustainable recycling and gamification</p>
+      <div class="buttons">
+        <a href="/signup" class="btn">Sign Up</a>
+        <a href="/login" class="btn">Login</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

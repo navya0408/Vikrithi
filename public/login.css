@@ -1,0 +1,157 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to bottom right, #d7eaca, #e8e3e1); /* Subtle warm gradient */
+}
+
+/* Container */
+.container {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    height: 80vh;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Left Section with Glass Effect */
+.left-section {
+    width: 50%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.3); /* Transparent white for glass effect */
+    backdrop-filter: blur(12px); /* Glass blur effect */
+    border-right: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
+}
+
+.login-box h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0.rem;
+    color: #333333;
+}
+
+.login-box p {
+    color: #4c4c4c;
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: #666666;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    color: #333333;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    color: #666666;
+}
+
+.form-options a {
+    color: #923a3a;
+    text-decoration: none;
+}
+.form-header {
+    text-align: left; /* Aligns the content within the header to the left */
+    margin-bottom: 20px;
+}
+
+.form-header .logo {
+    width: 60px; /* Adjust logo width */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Ensures proper spacing */
+}
+
+.btn {
+    width: 100%;
+    padding: 0.8rem;
+    background-color:  #307736;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+.btn:hover {
+    background-color: #27622b;
+}
+
+.btn.google {
+    background-color: #ffffff;
+    color: #333333;
+    border: 1px solid #cccccc;
+}
+
+.btn.google:hover {
+    background-color: #f0f0f0;
+}
+
+.signup-link {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #666666;
+}
+
+.signup-link a {
+    color:  #3a9241;
+    text-decoration: none;
+}
+
+/* Right Section with Enhanced Contrast */
+.right-section {
+    width: 50%;
+    background: url('https://wallpapers.com/images/hd/aesthetic-abstract-t02wimpg119w4faj.jpg') no-repeat center center;
+    background-size: cover;
+    position: relative;
+}
+
+.right-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom right,
+        rgba(0.1, 0, 0.0, 0.01),
+        rgba(0, 0, 0, 0.1)
+    ); /* Overlay for contrast */
+    z-index: 1;
+}
+
+

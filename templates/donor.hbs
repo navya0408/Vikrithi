@@ -1,0 +1,783 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+   <style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        display: flex;
+    }
+    .sidebar {
+        width: 250px;
+        background-color: #2C3E50; /* Darker shade for sidebar */
+        color: white;
+        height: 100vh;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    .sidebar a {
+        display: block;
+        color: white;
+        height: auto;
+        text-decoration: none;
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .sidebar a.active, .sidebar a:hover {
+        background-color: #1ABC9C; /* Accent color for hover */
+    }
+
+    .main-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        box-sizing: border-box;
+        background-color: #ECEFF1; /* Light gray for main background */
+    }
+
+    .top-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        margin-top: -0.45%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .top-bar .profile {
+        display: flex;
+        align-items: center;
+    }
+
+    .top-bar img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    .recommend {
+        background-color: rgb(197, 206, 225);
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        overflow-y: auto;
+        max-height: 625px;
+    }
+
+    .recommend::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .recommend::-webkit-scrollbar-thumb {
+        background-color: #546E7A;
+        border-radius: 10px;
+    }
+
+    .recommend .recommend-button {
+        background-color: #54637a;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-bottom: 20px;
+    }
+    .recommend .recommend-button:focus{
+        outline: none;
+    }
+
+    .recommend .product-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .recommend .product {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 5px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #FAFAFA;
+        outline: none;
+    }
+
+    .recommend .product img {
+        width: 100px;
+        height: 100px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .recommend .product strong {
+        margin-bottom: 5px;
+    }
+
+    .recommend .product span {
+        color: #757575;
+        font-size: 14px;
+    }
+    .prdcts {
+        background-color: rgb(99, 119, 128);
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        overflow-y: auto;
+        max-height: 600px;
+    }
+
+    .prdcts::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .prdcts::-webkit-scrollbar-thumb {
+        background-color: #546E7A;
+        border-radius: 10px;
+    }
+
+    .prdcts .prdcts-button-cart {
+          background-color: #1E88E5;
+          color: white;
+          border: none;
+          padding: 5px 20px;
+          border-radius: 10px;
+          cursor: pointer;
+          margin-right: 23%;
+          margin-bottom: -20px;
+          text-align: center;
+          display: inline-block;
+          text-decoration: none;
+          outline: none;
+  }
+
+   .prdcts .prdcts-button-cart:hover {
+         background-color: #1565C0;
+         color: #ffffff;
+         text-decoration: none;
+         outline: none;
+   }
+
+    .prdcts .prdcts-button-Buy {
+           background-color: #43A047;
+           color: white;
+           border: none;
+           padding: 5px 30px;
+           border-radius: 10px;
+           cursor: pointer;
+           margin-right: -23%;
+           margin-top:-15px;
+           text-align: center;
+           display: inline-block;
+           text-decoration: none;
+           outline: none;
+    }
+
+    .prdcts .donate-btn {
+           background-color: #ff7a24;
+           color: white;
+           border: none;
+           padding: 5px 30px;
+           border-radius: 10px;
+           cursor: pointer;
+           text-align: center;
+           display: inline-block;
+           text-decoration: none;
+           outline: none;
+          
+    }
+
+   .prdcts .prdcts-button-Buy:hover {
+           background-color: #388E3C;
+           color: #ffffff;
+           text-decoration: none;
+           outline: none;
+    }
+
+    .prdcts .product-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .prdcts .product {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        background-color: #FAFAFA;
+    }
+
+    .prdcts .product img {
+        width: 300px;
+        height: 200px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .prdcts .product strong {
+        margin-bottom: 10px;
+    }
+
+    .prdcts .product span {
+        color: #757575;
+        font-size: 14px;
+    }
+
+    /* Square shape for extra box */
+       .box {
+        width: 750px;
+        height: 350px;
+        background-image: url("stat.jpg");
+        padding: 20px;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        margin-left:60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    /* Updated style for extra box to fill the space */
+    .extra-box {
+        width: 90%;
+        max-width: 900px;
+        background: #b8aec5;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between; /* Ensures equal spacing between items */
+        align-items: flex-start;
+    }
+
+    .product-item {
+        width: 100%;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        padding: 15px;
+        margin: 0 10px; /* Adds spacing between items */
+    }
+
+    .product-item img {
+        width: 150px;
+        max-width: 200px;
+        height: 100px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+
+    .product-item strong {
+        display: block;
+        font-size: 16px;
+        margin: 5px 0;
+    }
+
+    .product-item p {
+        font-size: 14px;
+        color: #555;
+        margin: 10px 0;
+    }
+
+    .donate-btn {
+        background-color: #9cc88b;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        
+        outline: none;
+    }
+    .donate-btn:hover {
+        background-color: #388E3C;
+           color: #ffffff;
+           text-decoration: none;
+           outline: none;
+    }
+    .donate-btn:focus{
+        outline: none;
+    }
+    .coins {
+    font-family: 'Open Sans', sans-serif;
+    height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Stack content vertically */
+    background: url('https://i.pinimg.com/736x/84/b6/f1/84b6f1aae4d65b9ebb7aaa98a6981a9c.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.coins .coin-card {
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    width: 400px;
+    padding: 30px;
+    text-align: center;
+    position: relative;
+    animation: fadeIn 1s ease-out;
+}
+
+.coins .coin-card h1 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.coins .coin-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.coins .coin-display .coin-image {
+    width: 120px;
+    height: 120px;
+    background: url("download-removebg-preview.png") no-repeat center center/contain;
+    animation: spin 2s linear infinite;
+    margin-right: 10px;
+}
+
+.coins .coin-count {
+    font-size: 60px;
+    font-weight: 700;
+    color: #ff7e5f;
+    text-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+.coins .btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    font-size: 16px;
+    color: #fff;
+    background: #ff7e5f;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.coins .btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.coins .progress {
+    height: 10px; /* Set a fixed height for the progress bar */
+    width: 0;
+    background-color: #ff7e5f;
+    border-radius: 5px;
+    transition: width 0.3s ease;
+}
+
+.coins .donate-message {
+    font-size: 20px;
+    color: white; /* Changed text color to white */
+    margin-top: 30px;
+    font-weight: 600;
+    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    width: 0;
+    animation: typing 4s steps(30) forwards, blink 0.75s step-end infinite;
+    text-align: center;
+    max-width: 600px;
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+    }
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+
+</style>
+
+<body>
+    <div class="sidebar">
+        <h2>VIKRITHI</h2>
+        <a href="#dashboard" id="dashboard-link" class="active" onclick="changeContent('dashboard')">Dashboard</a>
+        <a href="#products" id="products-link" onclick="changeContent('products')">Products</a>
+        <a href="#cart" id="cart-link" onclick="changeContent('cart')">My Cart</a>
+        <a href="#coins" id="coins-link" onclick="changeContent('coins')">Digi Coins</a>
+        <a href="#donate" id="donate-link" onclick="changeContent('donate')">Donate here</a>
+    </div>
+      
+
+
+
+
+    <div class="main-content">
+        <div class="top-bar">
+            <div class="profile">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuCfNE_3aoytZeYd8kqYHMdAoy41t5k9eLMg&s" alt="User">
+                <span>{{name}}</span>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Settings
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Account Settings</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Log Out</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="content-area">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="box">
+                    </div>
+                    <div class="extra-box">
+                        <div class="product-item">
+                            <img src="https://d3hnfqimznafg0.cloudfront.net/images/Article_Images/ImageForArticle_913(1).jpg" alt="Plastic Product">
+                            <strong>Plastic</strong>
+                            
+                            <button class="donate-btn">Donate here</button>
+                        </div>
+                        <div class="product-item">
+                            <img src="https://www.ikea.com/in/en/images/products/pokal-glass-clear-glass__1384269_pe962939_s5.jpg" alt="Glass Product">
+                            <strong>Glass</strong>
+                            
+                            <button class="donate-btn">Donate here</button>
+                        </div>
+                        <div class="product-item">
+                            <img src="https://m.media-amazon.com/images/I/81waBPFYdBL._AC_UF1000,1000_QL80_.jpg" alt="Cardboard Product">
+                            <strong>Cardboard</strong>
+                            
+                            <button class="donate-btn">Donate here</button>
+                        </div>
+                    </div>                    
+    </div>
+                <div class="col-md-4">
+                    <div class="recommend">
+                        <button class="recommend-button">Popular Recycled Products</button>
+                        <div class="product-grid">
+                            <div class="product">
+                                <img src="https://dva1blx501zrw.cloudfront.net/download_resources/gb/downloads/11561/1.-Custom-Square-Table-EDITED.jpg" alt="Small Square Table">
+                                <strong>Square Table</strong>
+                                <span>Recycled by:</span>
+                            </div>
+                            <div class="product">
+                                <img src="https://dva1blx501zrw.cloudfront.net/download_resources/gb/downloads/11562/2.-Custom-Coffee-Table-EDITED.jpg" alt="Round Coffee Table">
+                                <strong>Round Coffee Table</strong>
+                                <span>Recycled by:</span>
+                            </div>
+                            <div class="product">
+                                <img src="https://dva1blx501zrw.cloudfront.net/download_resources/gb/downloads/11571/8.-Watering-Can-EDITED.jpg" alt="Watering Can">
+                                <strong>Watering Can</strong>
+                                <span>Recycled by:</span>
+                            </div>
+                            <div class="product">
+                                <img src="https://dva1blx501zrw.cloudfront.net/download_resources/gb/downloads/11567/4.-Board-Planters-EDITED.jpg" alt="Board Planters">
+                                <strong>Board Planters</strong>
+                                <span>Recycled by:</span>
+                            </div>
+                            <div class="product">
+                                <img src="https://www.plastic.org.au/cdn/shop/products/planter1.jpg?v=1682485552&width=600" alt="Planter">
+                                <strong>Planter</strong>
+                                <span>Recycled by: </span>
+                            </div>
+                            <div class="product">
+                                <img src="https://dva1blx501zrw.cloudfront.net/download_resources/gb/downloads/11563/3.-Custom-Ping-Pong-Table-EDITED.jpg" alt="Ping-Pong table">
+                                <strong>Ping-Pong table</strong>
+                                <span>Recycled by: UserName</span>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        
+   
+
+        function changeContent(page) {
+            // Remove 'active' class from all links
+            const links = document.querySelectorAll('.sidebar a');
+            links.forEach(link => link.classList.remove('active'));
+
+            // Add 'active' class to clicked link
+            const activeLink = document.getElementById(`${page}-link`);
+            activeLink.classList.add('active');
+
+            // Change content based on the selected page
+            const contentArea = document.getElementById('content-area');
+            if (page === 'dashboard') {
+                contentArea.innerHTML = `
+                     <div id="content-area">
+                        
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="box"></div>
+                    <div class="extra-box">
+                       <div class="product-item">
+                            <img src="https://d3hnfqimznafg0.cloudfront.net/images/Article_Images/ImageForArticle_913(1).jpg" alt="Plastic Product">
+                            <strong>Plastic</strong>
+                            
+                            <button class="donate-btn">Donate here</button>
+                        </div>
+                        <div class="product-item">
+                            <img src="https://www.ikea.com/in/en/images/products/pokal-glass-clear-glass__1384269_pe962939_s5.jpg" alt="Glass Product">
+                            <strong>Glass</strong>
+                            
+                            <button class="donate-btn">Donate here</button>
+                        </div>
+                        <div class="product-item">
+                            <img src="https://m.media-amazon.com/images/I/81waBPFYdBL._AC_UF1000,1000_QL80_.jpg" alt="Cardboard Product">
+                            <strong>Cardboard</strong>
+                            
+                            <button class="donate-btn">Donate here</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="recommend">
+                        <button class="recommend-button">Popular Recycled Products</button>
+                        <div class="product-grid">
+                            <div class="product">
+                                <img src="https://dva1blx501zrw.cloudfront.net/download_resources/gb/downloads/11561/1.-Custom-Square-Table-EDITED.jpg" alt="Product">
+                                <strong>Product 1</strong>
+                                <span>Company A</span>
+                            </div>
+                            <div class="product">
+                                <img src="https://dva1blx501zrw.cloudfront.net/download_resources/gb/downloads/11562/2.-Custom-Coffee-Table-EDITED.jpg" alt="Product">
+                                <strong>Product 2</strong>
+                                <span>Company B</span>
+                            </div>
+                            <div class="product">
+                                <img src="https://dva1blx501zrw.cloudfront.net/download_resources/gb/downloads/11571/8.-Watering-Can-EDITED.jpg" alt="Product">
+                                <strong>Product 3</strong>
+                                <span>Company C</span>
+                            </div>
+                            <div class="product">
+                                <img src="https://dva1blx501zrw.cloudfront.net/download_resources/gb/downloads/11563/3.-Custom-Ping-Pong-Table-EDITED.jpg" alt="Product">
+                                <strong>Product 4</strong>
+                                <span>Company D</span>
+                            </div>
+                            <div class="product">
+                                <img src="https://www.plastic.org.au/cdn/shop/products/planter1.jpg?v=1682485552&width=600" alt="Product">
+                                <strong>Product 5</strong>
+                                <span>Company E</span>
+                            </div>
+                            <div class="product">
+                                <img src="https://5.imimg.com/data5/SELLER/Default/2023/4/299711465/IM/GH/JV/123443384/22inch-recycled-plastic-garden-bench-500x500.png" alt="Product">
+                                <strong>Product 6</strong>
+                                <span>Company F</span>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+                `;
+            } else if (page === 'products') {
+                contentArea.innerHTML = `
+                            <div class="prdcts" id = "products-container">
+                                <div class="product-grid">
+                                    <div class="product">
+                                       <img src="https://dva1blx501zrw.cloudfront.net/download_resources/gb/downloads/11561/1.-Custom-Square-Table-EDITED.jpg" alt="Product">
+                                       <strong>Product 1</strong>
+                                       <p>The table was made from toothpaste tubes and toothbrushes</p>
+                                       <button class="prdcts-button-cart">Add to cart</button>
+                                       <button class="prdcts-button-Buy">Buy now</button>
+                        </div>
+                        <div class="product">
+                            <img src="https://dva1blx501zrw.cloudfront.net/download_resources/gb/downloads/11562/2.-Custom-Coffee-Table-EDITED.jpg" alt="Product">
+                            <strong>Product 2</strong>
+                            <p>This coffee table was made from cigarette waste</p>
+                            <button class="prdcts-button-cart">Add to cart</button>
+                            <button class="prdcts-button-Buy">Buy now</button>
+         
+                        </div>
+                        <div class="product">
+                            <img src="https://dva1blx501zrw.cloudfront.net/download_resources/gb/downloads/11571/8.-Watering-Can-EDITED.jpg" alt="Product">
+                            <strong>Product 3</strong>
+                            <p>This watering can was made from crisp packets</p>
+                            <button class="prdcts-button-cart">Add to cart</button>
+                            <button class="prdcts-button-Buy">Buy now</button>
+                        </div>
+                        <div class="product">
+                            <img src="https://dva1blx501zrw.cloudfront.net/download_resources/gb/downloads/11563/3.-Custom-Ping-Pong-Table-EDITED.jpg" alt="Product">
+                            <strong>Product 4</strong>
+                           <p>This ping pong table was made from cigarette waste</p>
+                            <button class="prdcts-button-cart">Add to cart</button>
+                            <button class="prdcts-button-Buy">Buy now</button>
+                        </div>
+                        <div class="product">
+                            <img src="https://www.plastic.org.au/cdn/shop/products/planter1.jpg?v=1682485552&width=600" alt="Product">
+                            <strong>Product 5</strong>
+                            <button class="prdcts-button-cart">Add to cart</button>
+                            <button class="prdcts-button-Buy">Buy now</button>
+                        </div>
+                        <div class="product">
+                            <img src="https://5.imimg.com/data5/SELLER/Default/2023/4/299711465/IM/GH/JV/123443384/22inch-recycled-plastic-garden-bench-500x500.png" alt="Product">
+                            <strong>Product 6</strong>
+                            <p>This Benches were made from Tetra Packs</p>
+                            <button class="prdcts-button-cart">Add to cart</button>
+                            <button class="prdcts-button-Buy">Buy now</button>
+                        </div>
+                    </div>
+                </div>
+                `;
+            } else if (page === 'cart') {
+                contentArea.innerHTML = `
+                    <div class="cart-container" id="cart-container">
+                            <h3>My Cart</h3>
+                    <div id="cart-items"></div>
+                     </div>
+                `;
+            }else if (page === 'coins') {
+    contentArea.innerHTML = `
+        <div class="coins">
+            <div class="coin-card">
+                <h1>Your Digi Coins</h1>
+                <div class="coin-display">
+                    <div class="coin-image"></div>
+                    <div class="coin-count" id="coinCount">1500</div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" id="coinProgress"></div>
+                </div>
+                
+            </div>
+            <div class="donate-message" id="donateMessage">Donate more to increase your coins</div>
+        </div>
+    `;
+
+    const coinCountElement = document.getElementById('coinCount');
+    const progress = document.getElementById('coinProgress');
+    const addCoinsButton = document.getElementById('addCoinsButton');
+    let coins = 1500;
+
+    function addCoins() {
+        coins += 100; // Add 100 coins
+        coinCountElement.textContent = coins;
+
+        // Update progress bar
+        const progressWidth = (coins / 2000) * 100;
+        progress.style.width = `${progressWidth}%`; // Correct interpolation
+
+        // Temporary coin pulse animation
+        coinCountElement.style.transform = 'scale(1.3)';
+        coinCountElement.style.transition = 'transform 0.2s ease';
+        setTimeout(() => {
+            coinCountElement.style.transform = 'scale(1)';
+        }, 200);
+    }
+
+    addCoinsButton.addEventListener('click', addCoins); // Add event listener for button
+}
+ else if (page === 'donate') {
+                contentArea.innerHTML = `
+                     <div class="prdcts" id = "products-container">
+                                <div class="product-grid">
+                                    <div class="product">
+                                       <img src="https://d3hnfqimznafg0.cloudfront.net/images/Article_Images/ImageForArticle_913(1).jpg" alt="Product">
+                            <strong>Plastic</strong>
+                            <button class="donate-btn">Donate here</button>
+                        </div>
+                        <div class="product">
+                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGl3NvHLovrvVXsyyEpUs6mTVLQKHMt2cAlA&s" alt="Product">
+                            <strong>Paper</strong>
+                            <button class="donate-btn">Donate here</button>
+         
+                        </div>
+                        <div class="product">
+                            <img src="https://m.media-amazon.com/images/I/81waBPFYdBL._AC_UF1000,1000_QL80_.jpg" alt="Product">
+                            <strong>Cardboard</strong>
+                            <button class="donate-btn">Donate here</button>
+                            
+                        </div>
+                        <div class="product">
+                             <img src="https://www.ikea.com/in/en/images/products/pokal-glass-clear-glass__1384269_pe962939_s5.jpg" alt="Product">
+                            <strong>Glass</strong>
+                            <button class="donate-btn">Donate here</button>
+                        </div>
+                        <div class="product">
+                             <img src="https://img.etimg.com/thumb/width-420,height-315,imgsize-38932,resizemode-75,msid-94577584/markets/commodities/news/why-aluminium-prices-are-struggling-at-a-one-and-a-half-year-low/aluminium-prices.jpg" alt="Product">
+                            <strong>Aluminium </strong>
+                            <button class="donate-btn">Donate here</button>
+                        </div>
+                        <div class="product">
+                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLtfsPBzQd3_wmKBrt2caLkrfxttze5tXH9Q&s" alt="Product">
+                            <strong>Steel</strong>
+                            <button class="donate-btn">Donate here</button>
+                        </div>
+                    </div>
+                </div>
+                
+                `;
+            } 
+        }
+    </script>
+</body>
+</html>

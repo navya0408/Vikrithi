@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fauget E-Commerce Dashboard</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f4f4f9;
+        }
+
+        .sidebar {
+            background-color: #282c34;
+            color: #fff;
+            padding: 20px;
+            width: 150px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            position: fixed;
+            border-right: 1px solid #ccc;
+        }
+
+        .sidebar h1 {
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: block;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #3a3f47;
+        }
+
+        .sidebar .ruler-1 {
+            width: 100%;
+            height: 1px;
+            background-color: #ffffff;
+            margin: 20px 0;
+        }
+
+        .sidebar .ruler-2 {
+            width: 100%;
+            height: 1px;
+            background-color: #3a3f47;
+            margin: 20px 0;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            margin-left: 150px;
+            margin-top: 80px; /* Added space at the top for profile info */
+        }
+
+        .dashboard {
+            display: flex;
+            gap: 20px;
+            height: calc(100vh - 80px);
+        }
+
+        .right-box {
+            background-color: #fff;
+            flex: 1;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+        }
+
+        .left-box-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            flex: 2;
+        }
+
+        .left-box {
+            background-color: #fff;
+            flex: 1;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            border-bottom: 1px solid #ccc;
+            z-index: 1000;
+        }
+
+        .header .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header .user-info img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .header .user-info span {
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h1>Vikrithi</h1>
+        <div class="ruler-1"></div>
+        <ul>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="#">My Cart</a></li>
+            <li><a href="#">Payout</a></li>
+            <li><a href="#">Donate here</a></li>
+        </ul>
+        <div class="ruler-2"></div>
+        <ul class="bottom-ul">
+            <li><a href="#">Help</a></li>
+        </ul>
+    </div>
+
+    <div class="header">
+        <div class="user-info">
+            <img src="https://www.transparentpng.com/download/user/gray-user-profile-icon-png-fP8Q1P.png" alt="User Image">
+            <span>Alfredo Torres</span>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="dashboard">
+            <!-- Left Side Boxes -->
+            <div class="left-box-container">
+                <div class="left-box">
+                    <h2>Left Top Box</h2>
+                    <p>This is the top-left content.</p>
+                </div>
+                <div class="left-box">
+                    <h2>Left Bottom Box</h2>
+                    <p>This is the bottom-left content.</p>
+                </div>
+            </div>
+
+            <!-- Right Box -->
+            <div class="right-box">
+                <h2>Right Box</h2>
+                <p>This is the right-side content.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
